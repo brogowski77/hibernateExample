@@ -14,9 +14,11 @@ public class MainApp {
                 .createEntityManagerFactory("ProjectPU");
         entityManager = entityManagerFactory.createEntityManager();
 
-
-        createAddress(2, "Wrocław", "Legincka 50");
-        //deleteAddress(1, "Wrocław", "Plac Grunwaldzki");
+        //createAddress(1, "Wrocław", "Plac Grunwaldzki");
+        //createAddress(2, "Wrocław", "Legincka 50");
+        
+        //usuwa po id
+        deleteAddress(2);
     }
 
     private static void createAddress(int id, String city, String street) {
@@ -26,11 +28,12 @@ public class MainApp {
         entityManager.getTransaction().commit();
     }
 
-    private static void deleteAddress(int id, String city, String street) {
+
+    private static void deleteAddress(int id) {
+        MyAddress address = entityManager.find(MyAddress.class, id);
         entityManager.getTransaction().begin();
-        entityManager.flush();
-        MyAddress address = new MyAddress(id, city, street);
         entityManager.remove(address);
         entityManager.getTransaction().commit();
     }
+
 }

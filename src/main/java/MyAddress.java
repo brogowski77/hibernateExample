@@ -56,6 +56,11 @@ public class MyAddress {
         super();
     }
 
+
+    public MyAddress(int id) {
+        this.id = id;
+    }
+
     @Override
     public String toString() {
         return "myAddress [id=" + id + ", city=" + city + ", street=" + street + "]";
