@@ -10,8 +10,7 @@ public class MainApp {
     private static EntityManager entityManager;
 
     public static void main(String[] args) {
-        EntityManagerFactory entityManagerFactory = Persistence
-                .createEntityManagerFactory("ProjectPU");
+        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("myJpaExample");
         entityManager = entityManagerFactory.createEntityManager();
 
         //createAddress(1, "Wrocław", "Plac Grunwaldzki");
