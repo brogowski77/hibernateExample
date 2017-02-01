@@ -16,9 +16,14 @@ public class MainApp {
 
         //createAddress(1, "Wrocław", "Plac Grunwaldzki");
         //createAddress(2, "Wrocław", "Legincka 50");
-        
+
         //usuwa po id
-        deleteAddress(2);
+        //deleteAddress(2);
+
+        //update dane gdzie id = x, zamienia city i street
+        //updateAddress(1, "Warszawa", "3 Maja");
+        selectAddress(1);
+
     }
 
     private static void createAddress(int id, String city, String street) {
@@ -33,6 +38,21 @@ public class MainApp {
         MyAddress address = entityManager.find(MyAddress.class, id);
         entityManager.getTransaction().begin();
         entityManager.remove(address);
+        entityManager.getTransaction().commit();
+    }
+
+    private static void updateAddress(int id, String city, String street){
+        MyAddress address = entityManager.find(MyAddress.class, id);
+        entityManager.getTransaction().begin();
+        address.setCity(city);
+        address.setStreet(street);
+        entityManager.getTransaction().commit();
+    }
+
+    private static void selectAddress(int id) {
+        MyAddress address = entityManager.find(MyAddress.class, id);
+        entityManager.getTransaction().begin();
+        System.out.println("id: " + address.getId() + " city: " + address.getCity() + " street: " + address.getStreet());
         entityManager.getTransaction().commit();
     }
 
