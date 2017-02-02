@@ -1,10 +1,8 @@
 /**
  * Created by RENT on 2017-02-01.
  */
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "address")
@@ -20,6 +18,11 @@ public class MyAddress {
 
     @Column(name = "street")
     private String street;
+
+
+    @OneToMany(mappedBy="myAddress")
+    private List<MyCustomer> customers;
+
 
     public int getId() {
         return id;
@@ -63,8 +66,11 @@ public class MyAddress {
 
     @Override
     public String toString() {
-        return "myAddress [id=" + id + ", city=" + city + ", street=" + street + "]";
+        return "MyAddress{" +
+                "id=" + id +
+                ", city='" + city + '\'' +
+                ", street='" + street + '\'' +
+                ", customers=" + customers +
+                '}';
     }
-
-
 }
